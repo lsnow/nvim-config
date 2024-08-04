@@ -148,12 +148,12 @@ return {
       },
       formatting = {
         format = function(entry, vim_item)
-          if entry.source.name ~= "nvim_lsp" then
-            vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
-          else
-            -- Remove the leading character of lsp
-            vim_item.abbr = string.sub(vim_item.abbr, 2, 51)
-          end
+          --if entry.source.name ~= "nvim_lsp" then
+          --  vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
+          --else
+          --  -- Remove the leading character of clangd
+          --  vim_item.abbr = string.sub(vim_item.abbr, 2, 51)
+          --end
           vim_item.menu = ({
             buffer = "B",
             nvim_lsp = "L",
