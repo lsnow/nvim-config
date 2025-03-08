@@ -72,6 +72,10 @@ return {
           "openai/chatgpt-4o-latest", -- $5/15
           "openai/gpt-4.5-preview", -- $75/150
         },
+        topic = {
+          model = "anthropic/claude-3.7-sonnet",
+          params = { max_completion_tokens = 10000 },
+        },
         params = {
           chat = { temperature = 1.1, top_p = 1 },
           command = { temperature = 1.1, top_p = 1 },
@@ -100,7 +104,7 @@ return {
     -- Prompt used for interactive LLM calls like PrtRewrite where {{llm}} is
     -- a placeholder for the llm name🤖
     command_prompt_prefix_template = "🦜{{llm}} ~ ",
-    toggle_target = "tabnew",
+    toggle_target = "vsplit",
     online_model_selection = true,
     command_auto_select_response = false,
     hooks = {
@@ -200,7 +204,7 @@ return {
         local t = template:gsub("{{lang}}", vim.fn.environ()["LANG"])
         local model = prt.get_model "command"
         prt.logger.info("Explaining selection with model: " .. model.name)
-        prt.Prompt(params, prt.ui.Target.new, model, nil, t)
+        prt.Prompt(params, prt.ui.Target.vnew, model, nil, t)
       end,
       FixBugs = function(prt, params)
         local template = [[
@@ -221,7 +225,7 @@ return {
         ]]
         local model_obj = prt.get_model "command"
         prt.logger.info("Fixing bugs in selection with model: " .. model_obj.name)
-        prt.Prompt(params, prt.ui.Target.new, model_obj, nil, template)
+        prt.Prompt(params, prt.ui.Target.vnew, model_obj, nil, template)
       end,
       Optimize = function(prt, params)
         local template = [[
@@ -242,7 +246,7 @@ return {
         ]]
         local model_obj = prt.get_model "command"
         prt.logger.info("Optimizing selection with model: " .. model_obj.name)
-        prt.Prompt(params, prt.ui.Target.new, model_obj, nil, template)
+        prt.Prompt(params, prt.ui.Target.vnew, model_obj, nil, template)
       end,
       Debug = function(prt, params)
         local template = [[

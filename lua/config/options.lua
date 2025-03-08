@@ -27,6 +27,7 @@ local options = {
   completeopt = "menu,menuone,noselect",       -- autocompletion
   fileencoding = "utf-8",                      -- The encoding written to file
   backspace = "indent,eol,start",              -- Making sure backspace works
+  splitright = true,                           -- Splitting a window will put the new window right of the current one
 }
 
 for key, val in pairs(options) do
