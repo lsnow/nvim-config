@@ -2,7 +2,6 @@ table.unpack = table.unpack or unpack -- 5.1 compatibility
 
 local config = {
   grep_hidden = true,
-  fzf_native = true,
   show_untracked_files = false,
   keys = {
     -- Search stuff
@@ -133,43 +132,10 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     enabled = true,
-    dependencies = {
-      { "telescope-fzf-native.nvim", optional = true },
-    },
     keys = config.keys,
     opts = config.opts,
     config = function(_, opts)
       config.config_function(opts)
     end,
-  },
-
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    enabled = config.fzf_native,
-    build = "make",
-    lazy = "true",
-    config = function()
-      require("telescope").load_extension("fzf")
-    end,
-  },
-
-  {
-    "jvgrootveld/telescope-zoxide", -- TODO: configurable
-    config = function()
-      require("telescope").load_extension("zoxide")
-    end,
-    keys = {
-      { "<leader>fz", "<cmd>Telescope zoxide list<cr>", desc = "Zoxide" },
-    },
-  },
-
-  {
-    "crispgm/telescope-heading.nvim",
-    config = function()
-      require("telescope").load_extension("heading")
-    end,
-    keys = {
-      { "<leader>sh", "<cmd>Telescope heading<cr>", desc = "Headings" },
-    },
   },
 }

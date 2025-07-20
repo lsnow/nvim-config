@@ -22,7 +22,7 @@ end
 
 return {
   "frankroeder/parrot.nvim",
-  event = "VimEnter",
+  event = { "VeryLazy" },
   -- dependencies = { 'ibhagwan/fzf-lua', 'nvim-lua/plenary.nvim' },
   dependencies = { 'nvim-lua/plenary.nvim' },
   -- optionally include "folke/noice.nvim" or "rcarriga/nvim-notify" for beautiful notifications
@@ -60,17 +60,19 @@ return {
         api_key = os.getenv "OPENROUTER_API_KEY",
         endpoint = "https://openrouter.ai/api/v1/chat/completions",
         models = {
+          "google/gemini-2.5-flash",
+          "google/gemini-2.5-pro",
           "qwen/qwq-32b:free",
           "deepseek/deepseek-r1-zero:free",
           "deepseek/deepseek-r1",
           "google/gemini-2.0-flash-001", -- $0.1/0.4 0.5s
+          "anthropic/claude-sonnet-4",
           "anthropic/claude-3.7-sonnet:beta", -- $3/15
           "anthropic/claude-3.7-sonnet", -- $3/15
           "anthropic/claude-3.7-sonnet:thinking", -- $3/15
           "anthropic/claude-3.5-sonnet", -- $3/15
           "openai/o3-mini-high",
           "openai/chatgpt-4o-latest", -- $5/15
-          "openai/gpt-4.5-preview", -- $75/150
         },
         topic = {
           model = "anthropic/claude-3.7-sonnet",
